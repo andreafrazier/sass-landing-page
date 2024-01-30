@@ -2,37 +2,44 @@
 document.addEventListener('DOMContentLoaded', () => {
     const faqContainer = document.querySelector('.faq-content');
 
-    faqContainer.addEventListener('click', () => {
-    const groupHeader = e.target.closest('faq-group-header');
+    faqContainer.addEventListener('click', (e) => {
+        const groupHeader = e.target.closest('.faq-group-header');
+        console.log(e.target);
 
-    if (!groupHeader) return;
+        if (!groupHeader) return;
 
-    const group = groupHeader.parentElement;
-    const groupBody = group.querySelector('faq-group-body');
-    const icon = groupHeader.querySelector('i');
+        const group = groupHeader.parentElement;
+        const groupBody = group.querySelector('.faq-group-body'); 
+        const icon = groupHeader.querySelector('i');
 
-    // Toggle icon
-    icon.classList.toggle('fa-plus');
-    icon.classList.toggle('fa-minus');
-
-    // Toggle body visibility
-    groupBody.classList.toggle('open');
-
-    // Close other open FAQs
-    const otherGroups = faqContainer.querySelectorAll('.faq-group');
-
-    otherGroups.forEach((otherGroup) => {
-        if(otherGroup !== group) {
-            const otherGroupBody = otherGroup.querySelector('faq-group-body');
-            const otherIcon = otherGroup.querySelector('faq-group-header i');
-
-            otherGroupBody.classList.remove('open');
-            otherIcon.classList.remove('fa-minus');
-            otherIcon.classList.add('fa-plus');
+        // Toggle icon
+        if (icon.classList.contains('fa-plus')) {
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
+        } else {
+            icon.classList.remove('fa-minus');
+            icon.classList.add('fa-plus');
         }
-    });
+
+        // Toggle body visibility
+        groupBody.classList.toggle('open');
+
+        // Close other open FAQs
+        const otherGroups = faqContainer.querySelectorAll('.faq-group');
+
+        otherGroups.forEach((otherGroup) => {
+            if (otherGroup !== group) {
+                const otherGroupBody = otherGroup.querySelector('.faq-group-body'); 
+                const otherIcon = otherGroup.querySelector('i');
+
+                otherGroupBody.classList.remove('open');
+                otherIcon.classList.remove('fa-minus');
+                otherIcon.classList.add('fa-plus');
+            }
+        });
     });
 });
+
 
 // Mobile Menu
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,4 +49,4 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburgerButton.addEventListener('click', () =>
       mobileMenu.classList.toggle('active')
     );
-  });
+});
