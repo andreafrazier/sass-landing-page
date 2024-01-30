@@ -108,8 +108,9 @@ img {
 }
 
 .testimonials .testimonials-heading {
-    width: 700px;
+    width: 1000px;
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .testimonials .testimonials-grid {
